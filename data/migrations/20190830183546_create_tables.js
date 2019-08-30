@@ -21,7 +21,7 @@ exports.up = function(knex) {
   .createTable('project_resource', tbl => {
     tbl.integer('project_id').unsigned().notNullable().references('id').inTable('projects');
     tbl.integer('resource_id').unsigned().notNullable().references('id').inTable('resources');
-    tbl.primary(['recipe_id', 'ingredient_id']);
+    tbl.primary(['project_id', 'resource_id']);
   })
 };
 

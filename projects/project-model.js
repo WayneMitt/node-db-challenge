@@ -7,7 +7,6 @@ module.exports = {
     addProjects,
     getShoppingList,
     getInstructions,
-    
     update,
     remove
 };
@@ -39,10 +38,10 @@ function getInstructions(recipe_id) {
         .orderBy('step_number')
 }
 
-function add(recipe) {
-    return db('recipeBook')
-        .insert(recipe)
-}
+// function add(recipe) {
+//     return db('recipeBook')
+//         .insert(recipe)
+// }
 
 function update(recipe, id) {
     return db('recipeBook')

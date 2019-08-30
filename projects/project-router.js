@@ -4,6 +4,7 @@ const Projects = require('./project-model.js');
 
 const router = express.Router();
 
+//PROJECTS REQUESTS
 router.get('/', (req, res) => {
   Projects.getProjects()
   .then(projects => {
@@ -13,6 +14,30 @@ router.get('/', (req, res) => {
     res.status(500).json({ message: 'Failed to get Projects' });
   });
 });
+
+router.post('/', (req, res) => {
+  const projectData = req.body;
+
+  Projects.addProjects(projectData)
+  .then(scheme => {
+    res.status(201).json(scheme);
+  })
+  .catch (err => {
+    res.status(500).json({ message: 'Failed to create new scheme' });
+  });
+});
+
+
+//RESOURCES REQUESTS
+
+
+
+
+
+
+
+
+
 
 router.get('/:id/shoppingList', (req, res) => {
   const { id } = req.params;
@@ -45,5 +70,7 @@ router.get('/:id/steps', (req, res) => {
     res.status(500).json({ message: 'Failed to get steps' });
   });
 });
+
+
 
 module.exports = router;

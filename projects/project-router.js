@@ -17,60 +17,60 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   const projectData = req.body;
-
   Projects.addProjects(projectData)
-  .then(scheme => {
-    res.status(201).json(scheme);
+  .then(project => {
+    res.status(201).json(project);
   })
   .catch (err => {
-    res.status(500).json({ message: 'Failed to create new scheme' });
+    res.status(500).json({ message: 'Failed to create new project' });
   });
 });
 
 
 //RESOURCES REQUESTS
-
-
-
-
-
-
-
-
-
-
-router.get('/:id/shoppingList', (req, res) => {
-  const { id } = req.params;
-
-  Projects.getShoppingList(id)
-  .then(recipe => {
-    if (recipe) {
-      res.json(recipe);
-    } else {
-      res.status(404).json({ message: 'Could not find recipe with given id.' })
-    }
+router.get('/resources', (req, res) => {
+  Projects.getResources()
+  .then(resources => {
+    res.json(resources);
   })
   .catch(err => {
-    res.status(500).json({ message: 'Failed to get Projects' });
+    res.status(500).json({ message: 'Failed to get resources' });
   });
 });
 
-router.get('/:id/steps', (req, res) => {
-  const { id } = req.params;
-
-  Projects.getInstructions(id)
-  .then(steps => {
-    if (steps.length) {
-      res.json(steps);
-    } else {
-      res.status(404).json({ message: 'Could not find steps for given recipe' })
-    }
+router.post('/resources', (req, res) => {
+  const resourceData = req.body;
+  Projects.addResources(resourceData)
+  .then(resource => {
+    res.status(201).json(resource);
   })
-  .catch(err => {
-    res.status(500).json({ message: 'Failed to get steps' });
+  .catch (err => {
+    res.status(500).json({ message: 'Failed to create new resource' });
   });
 });
 
+
+//TASKS REQUESTS
+router.get('/tasks', (req, res) => {
+  Projects.getTasks()
+  .then(tasks => {
+    res.json(tasks);
+  })
+  .catch(err => {
+    res.status(500).json({ message: 'Failed to get tasks' });
+  });
+});
+
+router.post('/tasks', (req, res) => {
+  const taskData = req.body;
+  Projects.addTasks(taskData)
+  .then(task => {
+    res.status(201).json(task);
+  })
+  .catch (err => {
+    res.status(500).json({ message: 'Failed to create new task' });
+  });
+});
 
 
 module.exports = router;

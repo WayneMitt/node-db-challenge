@@ -65,6 +65,8 @@ Complete the following tasks:
   - [X] adding tasks.
   - [X] retrieving a list of tasks. **The list of tasks should include the project name and project description**.
 - [ ] When returning `project` or `task` information, the `completed` property should be `true` or `false`.
+https://github.com/tgriesser/knex/issues/2170
+
 
 For example, instead of returning a `task` that looks like this:
 
